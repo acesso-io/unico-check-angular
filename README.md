@@ -1,2 +1,2 @@
 # unico-check-angular
-POC de implementação do plugin Webframe para Angular.
+Essa PoC implementa o uso do plugin WebFrameJS (https://github.com/acesso-io/acessobio-webframe) no Angular 11.

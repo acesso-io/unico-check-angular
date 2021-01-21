@@ -1,0 +1,339 @@
+
+
+<div id="box-camera">
+  <span id="message"></span>
+
+  <img id="camera--trigger" src="assets/public/images/camera.svg" />
+
+  <!-- Popup Loading ... -->
+  <div id="box--loading" style="display: none;">
+      <div class="box-in">
+          <div class="loader">Loading...</div>
+      </div>
+  </div>
+
+  <!-- Popup Orientation ... -->
+  <div id="box--orientation">
+      <div class="box-in">
+          <div class="text">Mantenha o celular no modo Portrait:</div>
+          <img id="lock-image" src="assets/public/images/lock.svg" alt="Lock" />
+      </div>
+  </div>
+</div>
+
+<!-- Popup Completed ... -->
+<div id="box--completed" style="display: none;">
+  <div class="box-in">
+      <div id="success-checkmark" class="success-checkmark">
+          <div class="check-icon">
+              <span class="icon-line line-tip"></span>
+              <span class="icon-line line-long"></span>
+              <div class="icon-circle"></div>
+              <div class="icon-fix"></div>
+          </div>
+      </div>
+  </div>
+</div>
+
+<div id="box--loading-models" style="display: none;">
+  <div class="box-in">
+      <div class="loader">Carregando modelos...</div>
+      <div style="margin-top: 15px; font-family: 'Roboto', sans-serif;">Carregando modelos...</div>
+  </div>
+</div>
+
+<div id="box--error" style="display: none;">
+  <div class="box-in">
+      <div id="error-message" style="font-family: 'Roboto', sans-serif; font-size: 20px;">Ops... Algo inesperado aconteceu!</div>
+  </div>
+</div>
+
+<style>
+  /*#region Popup Completed */
+  
+  #box--completed {
+      display: inline-block;
+      position: fixed;
+      width: 100vw;
+      height: 100vh;
+      background-color: white;
+  }
+  
+  #box--completed .box-in {
+      position: absolute;
+      top: 45%;
+      right: 50%;
+      transform: translate(50%, -50%);
+      z-index: 10;
+      text-align: center;
+  }
+  
+  #box--completed .success-checkmark {
+      width: 80px;
+      height: 115px;
+      margin: 0 auto;
+  }
+  
+  #box--completed .success-checkmark .check-icon {
+      width: 80px;
+      height: 80px;
+      position: relative;
+      border-radius: 50%;
+      box-sizing: content-box;
+      border: 4px solid rgba(41, 128, 255, 1);
+  }
+  
+  #box--completed .success-checkmark .check-icon::before {
+      top: 3px;
+      left: -2px;
+      width: 30px;
+      transform-origin: 100% 50%;
+      border-radius: 100px 0 0 100px;
+  }
+  
+  #box--completed .success-checkmark .check-icon::after {
+      top: 0;
+      left: 30px;
+      width: 60px;
+      transform-origin: 0 50%;
+      border-radius: 0 100px 100px 0;
+      animation: rotate-circle 4.25s ease-in;
+  }
+  
+  #box--completed .success-checkmark .check-icon::before,
+  #box--completed .success-checkmark .check-icon::after {
+      content: '';
+      height: 100px;
+      position: absolute;
+      background-color: transparent;
+      transform: rotate(-45deg);
+  }
+  
+  #box--completed .success-checkmark .check-icon .icon-line {
+      height: 5px;
+      background-color: rgba(41, 128, 255, 1);
+      display: block;
+      border-radius: 2px;
+      position: absolute;
+      z-index: 10;
+  }
+  
+  #box--completed .success-checkmark .check-icon .icon-line.line-tip {
+      top: 46px;
+      left: 14px;
+      width: 25px;
+      transform: rotate(45deg);
+      animation: icon-line-tip 0.75s;
+  }
+  
+  #box--completed .success-checkmark .check-icon .icon-line.line-long {
+      top: 38px;
+      right: 8px;
+      width: 47px;
+      transform: rotate(-45deg);
+      animation: icon-line-long 0.75s;
+  }
+  
+  #box--completed .success-checkmark .check-icon .icon-circle {
+      top: -4px;
+      left: -4px;
+      z-index: 10;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      position: absolute;
+      box-sizing: content-box;
+      border: 4px solid rgba(41, 128, 255, 1);
+  }
+  
+  #box--completed .success-checkmark .check-icon .icon-fix {
+      top: 8px;
+      width: 5px;
+      left: 26px;
+      z-index: 1;
+      height: 85px;
+      position: absolute;
+      transform: rotate(-45deg);
+      background-color: transparent;
+  }
+  
+  @keyframes rotate-circle {
+      0% {
+          transform: rotate(-45deg);
+      }
+      5% {
+          transform: rotate(-45deg);
+      }
+      12% {
+          transform: rotate(-405deg);
+      }
+      100% {
+          transform: rotate(-405deg);
+      }
+  }
+  
+  @keyframes icon-line-tip {
+      0% {
+          width: 0;
+          left: 1px;
+          top: 19px;
+      }
+      54% {
+          width: 0;
+          left: 1px;
+          top: 19px;
+      }
+      70% {
+          width: 50px;
+          left: -8px;
+          top: 37px;
+      }
+      84% {
+          width: 17px;
+          left: 21px;
+          top: 48px;
+      }
+      100% {
+          width: 25px;
+          left: 14px;
+          top: 45px;
+      }
+  }
+  
+  @keyframes icon-line-long {
+      0% {
+          width: 0;
+          right: 46px;
+          top: 54px;
+      }
+      65% {
+          width: 0;
+          right: 46px;
+          top: 54px;
+      }
+      84% {
+          width: 55px;
+          right: 0px;
+          top: 35px;
+      }
+      100% {
+          width: 47px;
+          right: 8px;
+          top: 38px;
+      }
+  }
+  /*#endregion */
+  /*#region Popup loading models */
+  
+  #box--loading-models {
+      position: fixed;
+      width: 100vw;
+      height: 100vh;
+      top: 0;
+      background-color: transparent;
+      z-index: 62;
+      left: 0;
+      background-position: center center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-color: #fff;
+  }
+  
+  #box--loading-models .box-in {
+      position: absolute;
+      top: 45%;
+      right: 50%;
+      transform: translate(50%, -50%);
+      z-index: 10;
+      text-align: center;
+  }
+  
+  #box--loading-models .loader,
+  #box--loading-models .loader:after {
+      border-radius: 50%;
+      width: 88px;
+      height: 88px;
+      position: relative;
+      z-index: 10;
+  }
+  
+  #box--loading-models .loader {
+      margin: 0px auto;
+      font-size: 10px;
+      position: relative;
+      text-indent: -9999em;
+      border-top: 4px solid rgba(255, 255, 255, 0.0);
+      border-right: 4px solid rgba(255, 255, 255, 0.0);
+      border-bottom: 4px solid rgba(255, 255, 255, 0.0);
+      border-left: 4px solid rgba(41, 128, 255, 1);
+      -webkit-transform: translateZ(0);
+      -ms-transform: translateZ(0);
+      transform: translateZ(0);
+      -webkit-animation: load9 1.5s infinite linear;
+      animation: load9 1.5s infinite linear;
+  }
+  
+  @-webkit-keyframes load9 {
+      0% {
+          -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
+      }
+      100% {
+          -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+      }
+  }
+  
+  @keyframes load9 {
+      0% {
+          -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
+      }
+      100% {
+          -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+      }
+  }
+  /*#endregion */
+  /*#region Popup error */
+  
+  #box--error {
+      position: fixed;
+      width: 100vw;
+      height: 100vh;
+      top: 0;
+      background-color: transparent;
+      z-index: 62;
+      left: 0;
+      background-position: center center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-color: #fff;
+  }
+  
+  #box--error .box-in {
+      position: absolute;
+      top: 45%;
+      right: 50%;
+      transform: translate(50%, -50%);
+      z-index: 10;
+      text-align: center;
+  }
+  
+  #box--loading-models .loader,
+  #box--loading-models .loader:after {
+      border-radius: 50%;
+      width: 88px;
+      height: 88px;
+      position: relative;
+      z-index: 10;
+  }
+  
+  #box--loading-models .text {
+      margin: 0px auto;
+      text-align: center;
+  }
+  /*#endregion */
+</style>
+
+<router-outlet></router-outlet>
